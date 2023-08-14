@@ -69,7 +69,7 @@ dev.off()
 
 
 
-# 2. NO2 DECREASE DURING THE LOCKDOWN PERIOD
+# 2. NO2 DECREASE DURING LOCKDOWN PERIOD
 
 # Set the new working directory
 setwd("C:/Data_telerilevamento/lab/EN")
