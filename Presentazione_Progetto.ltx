@@ -1,0 +1,408 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+
+
+\setlength{\abovecaptionskip}{5pt}
+
+\usetheme{metropolis}
+
+% Personalizzazione dei colori
+\definecolor{verdepetrolio}{RGB}{50, 130, 102}
+\definecolor{bianco}{RGB}{255, 255, 255}
+\setbeamercolor{frametitle}{bg=verdepetrolio}
+\setbeamercolor{alerted text}{fg=bianco}
+
+% Imposta il font predefinito su Helvetica
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{\textbf{Monitoraggio Geo-Ecologico del Basso Salento}}
+\subtitle{Progetto di Telerilevamento Geo-Ecologico - 93457}
+\author{Gabriele Briganti}
+%\date{}
+
+\begin{document}
+\maketitle
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+
+
+
+
+% Sezione 1: introduzione
+\section{Introduzione}
+
+
+\begin{frame}{\textbf{Scopo dello studio}}
+Monitoraggio nel basso Salento degli effetti della \textit{Xylella fastidiosa}, batterio causa del \textbf{CoDiRO} (Complesso del Disseccamento Rapido dell'Olivo)
+\end{frame}
+
+
+\begin{frame}{\textbf{Scopo dello studio}}
+\begin{itemize}
+    \item Acquisizione di immagioni satellitari \textbf{Sentinel 2} (2018-2023)
+    \item \pause Calcolo di \textbf{indici spettrali} utilizzando R
+    \item \pause Verifica della presenza di variazioni significative: differenze di \textbf{land cover}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+% Sezione 2: materiali e metodi
+\section{Materiali e Metodi}
+
+
+\begin{frame}{\textbf{Materiali e Metodi}}
+\begin{itemize}
+    \item Importazione e visualizzazione delle immagini \textbf{Sentinel 2}
+    \item \pause Calcolo e visualizzazione degli \textbf{indici spettrali}
+    \item \pause \textbf{PCA}: \textit{Principal Component Analysis}
+    \item \pause \textbf{Land Cover}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{Link alla repository}}
+\begin{center}
+     \href{https://github.com/breegae/Telerilevamento_2023}{https://github.com/breegae/Telerilevamento\_2023}
+\end{center}
+\end{frame}
+
+
+
+
+
+\subsection{Importazione e visualizzazione delle immagini Sentinel 2}
+
+
+\begin{frame}{\textbf{Importazione e visualizzazione delle immagini Sentinel 2}}
+\begin{itemize}
+    \item Download immagini da {\href{https://scihub.copernicus.eu/dhus/#/home}{Copernicus}}
+    \item \pause Importazione in R
+    \item \pause Ritaglio dell'area di studio
+    \item \pause Visualizzazione delle immagini in Colori Naturali e NIR
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Area di studio}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Salentotcrit.png}
+    \caption{Area di studio}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{2018}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2018tc.png}
+    \caption{2018 - Colori reali}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2018nir.png}
+    \caption{2018 - NIR}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{2019}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2019tc.png}
+    \caption{2019 - Colori reali}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2019nir.png}
+    \caption{2019 - NIR}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{2020}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2020tc.png}
+    \caption{2020 - Colori reali}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2020nir.png}
+    \caption{2020 - NIR}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{2021}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2021tc.png}
+    \caption{2021 - Colori reali}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2021nir.png}
+    \caption{2021 - NIR}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{2022}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2022tc.png}
+    \caption{2022 - Colori reali}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2022nir.png}
+    \caption{2022 - NIR}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{2023}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2023tc.png}
+    \caption{2023 - Colori reali}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{2023nir.png}
+    \caption{2023 - NIR}
+    \label{fig:enter-label}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+
+
+\subsection{Calcolo e visualizzazione degli indici spettrali}
+
+\begin{frame}{\textbf{Calcolo e visualizzazione degli indici spettrali}}
+\begin{itemize}
+    \item Scelta degli indici spettrali
+    \item \pause Calcolo degli indici spettrali
+    \item \pause Calcolo della differenza degli indici fra 2018 e 2023 
+    \item \pause Plot dei risultati
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Scelta degli ndici spettrali}}
+\begin{itemize}
+    \item \textbf{NDVI}(\textit{Normalized Difference Vegetation Index}): utilizza le bande del \textbf{rosso} e del \textbf{NIR} per fornire informazioni sulla quantità e la densità della vegetazione, nonché sul suo stato di salute
+    \item \textbf{MSAVI} (\textit{Modified Soil-Adjusted Vegetation Index}): indice simile all'NDVI che tiene conto anche dell'effetto del suolo. MSAVI è utile in aree con terreni scoperti o soggetti a cambiamenti stagionali, in quanto corregge l'influenza del suolo sulla misurazione della vegetazione
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Calcolo degli indici spettrali}
+\begin{itemize}
+    \item \textbf{NDVI}(\textit{Normalized Difference Vegetation Index}):
+    \begin{equation}
+        NDVI = \frac{NIR - rosso}{NIR + rosso}
+    \end{equation}
+    \item  \textbf{MSAVI} (\textit{Modified Soil-Adjusted Vegetation Index}):\\
+     \begin{equation}
+        MSAVI = \frac{2*NIR + 1 -\sqrt{(2*NIR + 1)^{2} - 8*(NIR - rosso)}}{2}
+    \end{equation}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{Plot degli indici spettrali: NDVI 2018-2023}}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{ndvi2018.png}
+            \caption{NDVI 2018}
+        \label{fig:enter-label}
+        \end{figure}\\
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{ndvi2023.png}
+            \caption{NDVI 2023}
+        \label{fig:enter-label}
+        \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[width=1\textwidth]{NDVIdef.png}
+            \caption{NDVI - differenza fra 2018 e 2023}
+        \label{fig:enter-label}
+        \end{figure}
+        \end{column}
+        \end{columns}
+\end{frame}
+
+
+\begin{frame}{\textbf{Plot degli indici spettrali: MSAVI 2018-2023}}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{MSAVI2018.png}
+            \caption{MSAVI 2018}
+        \label{fig:enter-label}
+        \end{figure}\\
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{ndvi2023.png}
+            \caption{MSAVI 2023}
+        \label{fig:enter-label}
+        \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[width=1\textwidth]{MSAVIdef.png}
+            \caption{MSAVI - differenza fra 2018 e 2023}
+        \label{fig:enter-label}
+        \end{figure}
+        \end{column}
+        \end{columns}
+\end{frame}
+
+
+
+
+
+\subsection{PCA: \textit{Principal Component Analysis}}
+
+\begin{frame}{\textbf{PCA: Principal Component Analysis}}
+    \begin{itemize}
+        \item Tecnica statistica che riduce la complessità dei dati identificando nuove variabili (componenti principali)
+        \item \pause Combinazioni lineari di variabili che catturano la massima varianza possibile nelle nuove componenti principali
+        \item \pause  I dati possono essere plottati nello spazio delle componenti principali, permettendo di visualizzare i modelli di variazione in modo semplificato
+        \item \pause Il plot restituisce indicazioni sulle aree caratterizzate da maggior varianza, permettendo di identificare:
+        \begin{itemize}
+            \item Zone ad \textbf{elevata vulnerabilità}
+            \item Possibili \textbf{pattern ambientali}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{PCA: Principal Component Analysis}}
+    \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{pca.png}
+            \caption{PC1}
+        \label{fig:enter-label}
+        \end{figure}
+\end{frame}
+
+
+
+
+
+\subsection{\textit{Land Cover}}
+
+\begin{frame}{\textbf{Land Cover}}
+    \begin{itemize}
+        \item Classificazione delle immagini Sentinel 2
+        \item \pause Calcolo delle frequenze e delle percentuali di \textit{land cover}
+        \item \pause Creazione di un dataframe con i risultati ottenuti
+        \item \pause Plot dei risultati
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{Land cover: risultati}}
+    \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{lc.png}
+            \caption{\textit{Land cover}}
+        \label{fig:enter-label}
+        \end{figure}
+\end{frame}
+
+
+
+
+
+
+\section{Conclusioni}
+
+
+\begin{frame}{\textbf{Conclusioni}}
+    \begin{itemize}
+        \item Sono state rilevate \textbf{significative differenze} di \textit{land cover}
+        \item \pause Tali differenze potrebbero essere principalmente dovute al \textbf{CoDiRO} a causa della caratteristica monocolturalità dell'area di studio
+        \item \pause Con la PCA sono state rilevate le zone all'interno dell'area di studio soggette a \textbf{maggior vulnerabilità}
+        \item \pause L'analisi statistica di immagini satellitari in R rappresenta un potente strumento per il \textbf{monitoraggio Geo-Ecologico} e la corretta \textbf{gestione degli habitat}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+    \centering \textbf{Grazie per l'attenzione!}
+\end{frame}
+
+
+
+
+\end{document}
+
